@@ -1,0 +1,53 @@
+//Author Heath Lee
+//This sketch is for receving complex data via serial from the HC-05
+//bluetooth chip and parsing it into usable code
+//
+
+//Libraries
+#include <SoftwareSerial.h>// allows us to use pins other than default RX TX
+#include <Servo.h> //probably will use for PWM control on pin 9
+
+//Definitions
+SoftwareSerial Bluetooth(10, 11);//defines new serial connection as Bluetooth.serial with Rx=10 Tx=11
+int BluetoothData;//do i really need this?
+long previousTempo = 0;
+
+
+//the setup
+void setup() {
+  Serial.begin(9600); //regular serial to the computer
+  Bluetooth.begin(9600);// serial between AVR and Bluetooth adapter
+  Serial.println("PC Serial Started");
+  Serial.println("Bluetooth Serial Started");
+}
+
+//the loop
+void loop() {
+  while (Bluetooth.available() > 0) { //only update if new serial feed comes in ..change to bluetooth when done
+    //Bluetooth.print("you are connected");//send to phone
+    int val1 = Bluetooth.parseInt();
+    int val2 = Bluetooth.parseInt();
+    int val3 = Bluetooth.parseInt();
+    //Serial.print(Bluetooth.read());
+
+    if (Bluetooth.read() == '\r') { //if set to r, checks for carriage return. n is newline
+     // val1 = 255 - constrain(val1, 0, 255);
+      //val2 = 255 - constrain(val2, 0, 255);
+      //val3 = 255 - constrain(val3, 0, 255);
+    
+
+    // print the values in one string
+      //Serial.println(" val 1 is  ") && Serial.print(val1) && Serial.println(" val 2 is  ") && Serial.print(val2);
+      Serial.print("value 1 = ");
+      Serial.print(val1);
+      Serial.println();
+      Serial.print("value 2 = ");
+      Serial.print(val2);
+      Serial.println();
+      Serial.print("value 3 = ");
+      Serial.print(val3);
+      Serial.println();//just creates a new line
+      
+    }
+  }
+}
