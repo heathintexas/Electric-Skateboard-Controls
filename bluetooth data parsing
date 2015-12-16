@@ -4,7 +4,7 @@
 //
 
 //Libraries
-#include <SoftwareSerial.h>// allows us to use pins other than default RX TX
+#include <SoftwareSerial.h>// allows us to use pins other than default RX TX which I'm already using for debugging
 #include <Servo.h> //probably will use for PWM control on pin 9
 
 //Definitions
@@ -31,13 +31,7 @@ void loop() {
     //Serial.print(Bluetooth.read());
 
     if (Bluetooth.read() == '\r') { //if set to r, checks for carriage return. n is newline
-     // val1 = 255 - constrain(val1, 0, 255);
-      //val2 = 255 - constrain(val2, 0, 255);
-      //val3 = 255 - constrain(val3, 0, 255);
     
-
-    // print the values in one string
-      //Serial.println(" val 1 is  ") && Serial.print(val1) && Serial.println(" val 2 is  ") && Serial.print(val2);
       Serial.print("value 1 = ");
       Serial.print(val1);
       Serial.println();
